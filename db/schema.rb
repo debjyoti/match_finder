@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120193539) do
+ActiveRecord::Schema.define(:version => 20130121063336) do
+
+  create_table "options", :force => true do |t|
+    t.string   "option"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "options", ["question_id"], :name => "index_options_on_question_id"
 
   create_table "questions", :force => true do |t|
     t.text     "question"

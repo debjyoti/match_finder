@@ -5,6 +5,15 @@
       <%= f.text_area :question, :class => 'input-block-level', rows: 5 %>
     </div>
   </div>
+
+  <div class="control-group">
+    <%= f.fields_for :options do |option_form| %>
+      <%= render :partial => 'options/form', :locals => {f: option_form} %>
+    <%end%>
+    <%= link_to_add_fields "Add Option", f, :options %>
+  </div>
+
+
   <div class="control-group">
     <%= f.label :weight, :class => 'control-label' %>
     <div class="controls">
