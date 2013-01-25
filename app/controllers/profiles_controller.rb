@@ -25,6 +25,11 @@ class ProfilesController < ApplicationController
   # GET /profiles/new.json
   def new
     @profile = Profile.new
+    @questions = Question.all(include: :options)
+    @questions.each do |qs|
+      @profile.answers.new(question_id: qs.id)
+    end
+    @index=0
 
     respond_to do |format|
       format.html # new.html.erb

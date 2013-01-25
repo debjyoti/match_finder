@@ -42,6 +42,13 @@
     </div>
   </div>
 
+  <div class="control-group">
+    <%= f.fields_for :answers do |ans_form| %>
+      <%= render partial: 'answers/form', locals: {f: ans_form, qs: @questions[@index]} %>
+      <% @index += 1 %>
+    <%end%>
+  </div>
+
   <div class="form-actions">
     <%= f.submit nil, class: 'btn btn-primary' %>
   </div>
