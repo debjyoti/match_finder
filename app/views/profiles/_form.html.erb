@@ -1,4 +1,4 @@
-<%= form_for @profile, html: {class: 'form-horizontal'} do |f| %>
+<%= form_for @profile do |f| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
@@ -41,6 +41,9 @@
       <%= f.text_field :city %>
     </div>
   </div>
+
+  <hr>
+  <h4>Questionnaire</h4>
 
   <div class="control-group">
     <%= f.fields_for :answers do |ans_form| %>

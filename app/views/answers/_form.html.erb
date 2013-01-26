@@ -1,20 +1,21 @@
 <div class="control-group">
 
-  <div class="span8">
-    <%= qs.question %>
-  </div>
+  <div class="well">
+  <h5><%=qs.question %></h5>
 
   <%= f.hidden_field :question_id%>
 
   <div class="controls">
     <% qs.options.each do |option| %>
-      <%= f.label :options, option.option, class: 'radio' %>
       <%= f.radio_button(:option_id, option.id) %>
+      <%= f.label :options, option.option, class: 'radio inline' %>
+      <br/>
     <%end%>
   </div>
 
-  <%= f.label :explanation, 'Opinion:', class: 'control-label' %>
+  <br/>
   <div class="controls">
-    <%= f.text_area :explanation, class: 'input-block-level', rows: 5 %>
+    <%= f.text_area :explanation, class: 'input-block-level', rows: 5, placeholder: 'Your thoughts...' %>
+  </div>
   </div>
 </div>
