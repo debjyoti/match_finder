@@ -25,6 +25,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/new.json
   def new
     @profile = Profile.new
+    @profile.web_links.new()
     @questions = Question.all(include: :options)
     @questions.each do |qs|
       @profile.answers.new(question_id: qs.id, question: qs.question)

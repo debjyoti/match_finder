@@ -25,6 +25,16 @@
   <%= @profile.city %>
 </p>
 
+<p>
+<b>Links:</b>
+<%@profile.web_links.each do |link|%>
+  <p>
+  Type: <%=link.link_type%>
+  - Link-Url: <%=link.link_url%>
+  </p>
+<%end%>
+</p>
+
 <%@profile.answers.each do |answer|%>
   <hr>
   <p>

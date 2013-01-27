@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127055953) do
+ActiveRecord::Schema.define(:version => 20130127165023) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -52,5 +52,15 @@ ActiveRecord::Schema.define(:version => 20130127055953) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "web_links", :force => true do |t|
+    t.string   "link_type"
+    t.string   "link_url"
+    t.integer  "profile_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "web_links", ["profile_id"], :name => "index_web_links_on_profile_id"
 
 end
