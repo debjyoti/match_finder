@@ -105,7 +105,7 @@ class ProfilesController < ApplicationController
       option_id = params['profile']['answers_attributes'][indx]['option_id']
       if(option_id) then
         option_text = Option.find(option_id, select: :option)[:option]
-        params['profile']['answers_attributes'][indx].merge!('chosen_option' => option_text)
+        params['profile']['answers_attributes'][indx][:chosen_option] = option_text
       end
     end
   end
