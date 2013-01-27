@@ -27,7 +27,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
     @questions = Question.all(include: :options)
     @questions.each do |qs|
-      @profile.answers.new(question_id: qs.id)
+      @profile.answers.new(question_id: qs.id, question: qs.question)
     end
     @index=0
 
@@ -40,11 +40,15 @@ class ProfilesController < ApplicationController
   # GET /profiles/1/edit
   def edit
     @profile = Profile.find(params[:id])
+    @questions = Question.all(include: :options)
+    @index=0
   end
 
   # POST /profiles
   # POST /profiles.json
   def create
+
+    set_option_text_in_param
     @profile = Profile.new(params[:profile])
 
     respond_to do |format|
@@ -61,6 +65,8 @@ class ProfilesController < ApplicationController
   # PUT /profiles/1
   # PUT /profiles/1.json
   def update
+    
+    set_option_text_in_param
     @profile = Profile.find(params[:id])
 
     respond_to do |format|
@@ -85,4 +91,23 @@ class ProfilesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def set_option_text_in_param
+    #This seems to be inefficient. I am querying the database several times.
+    #I tried passing both the id and value (concatenated) in the radio-button
+    #value field. Create works, but edit form does not show selected buttons.
+    #There must be better way. Maybe I should use javascript to add the text
+    #as a hidden field and do away with this stupid method.
+    
+    params['profile']['answers_attributes'].keys.each do |indx|
+      option_id = params['profile']['answers_attributes'][indx]['option_id']
+      if(option_id) then
+        option_text = Option.find(option_id, select: :option)[:option]
+        params['profile']['answers_attributes'][indx].merge!('chosen_option' => option_text)
+      end
+    end
+  end
+
 end

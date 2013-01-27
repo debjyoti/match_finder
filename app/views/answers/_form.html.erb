@@ -4,10 +4,11 @@
   <h5><%=qs.question %></h5>
 
   <%= f.hidden_field :question_id%>
+  <%= f.hidden_field :question%>
 
   <div class="controls">
     <% qs.options.each do |option| %>
-      <%= f.radio_button(:option_id, option.id) %>
+      <%= f.radio_button(:option_id, option.id)%>
       <%= f.label :options, option.option, class: 'radio inline' %>
       <br/>
     <%end%>

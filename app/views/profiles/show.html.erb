@@ -25,6 +25,24 @@
   <%= @profile.city %>
 </p>
 
+<%@profile.answers.each do |answer|%>
+  <hr>
+  <p>
+  Qs-Id:<%=answer.question_id%>
+  </p>
+  <p>
+  Qs:<%=answer.question%>
+  </p>
+  <p>
+  Ans Id:<%=answer.option_id%>
+  </p>
+  <p>
+  Ans:<%=answer.chosen_option%>
+  </p>
+  <p>
+  Exp:<%=answer.explanation%>
+  </p>
+<%end%>
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>
