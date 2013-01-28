@@ -59,6 +59,13 @@
     <%end%>
   </div>
 
+  <div class="control-group">
+    <%= f.fields_for :user_questions do |links_form| %>
+      <%= render partial: 'user_questions/form', locals: {f: links_form} %>
+    <%end%>
+    <%= link_to_add_fields "Add Your Own Question", f, :user_questions %>
+  </div>
+
   <div class="form-actions">
     <%= f.submit nil, class: 'btn btn-primary' %>
   </div>

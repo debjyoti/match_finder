@@ -54,5 +54,17 @@
   </p>
 <%end%>
 
+<br/>
+<h5>User Submitted:</h5>
+<%@profile.user_questions.each do |answer|%>
+  <hr>
+  <p>
+  Qs:<%=answer.question%>
+  </p>
+  <p>
+  Exp:<%=answer.explanation%>
+  </p>
+<%end%>
+
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>
