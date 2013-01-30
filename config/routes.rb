@@ -1,8 +1,14 @@
 MatchFinder::Application.routes.draw do
+
+  root :to => 'static_stuff#about'
+
   resources :profiles
 
-
   resources :questions
+
+  get "about" => 'static_stuff#about'
+
+  get "contact_us" => "static_stuff#contact_us"
 
 
   # The priority is based upon order of creation:
