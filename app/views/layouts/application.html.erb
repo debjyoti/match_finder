@@ -27,15 +27,30 @@
           <a class="brand" href="#">Match Finder</a>
           <ul class="nav pull-right">
             <li> <%= link_to "About", about_path%> </li>
-            <li class="divider-vertical"></li>
-            <li> <%= link_to "Register", "#"%> </li>
-            <li class="divider-vertical"></li>
-            <li> <%= link_to "Sign In", "#"%> </li>
+            <% if user_signed_in? %>
+              <li><%= link_to "Edit credentials", edit_user_registration_path %> </li>
+              <li class="divider-vertical"></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+              <li class="divider-vertical"></li>
+            <%else%>
+              <li class="divider-vertical"></li>
+              <li> <%= link_to "Register", new_user_registration_path %> </li>
+              <li class="divider-vertical"></li>
+              <li> <%= link_to "Sign In", new_user_session_path%> </li>
+            <%end%>
           </ul>
 
         </div>
       </div>
     </div>
+
+    <% if notice or alert %>
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= notice %>
+        <%= alert %>
+      </div>
+    <%end%>
 
 
     <div class="container-fluid">
