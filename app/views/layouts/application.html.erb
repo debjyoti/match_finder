@@ -26,15 +26,22 @@
 
           <a class="brand" href="#">Match Finder</a>
           <ul class="nav pull-right">
+
             <li> <%= link_to "About", about_path%> </li>
             <li class="divider-vertical"></li>
             <li><%= link_to "Browse", profiles_path %> </li>
             <li class="divider-vertical"></li>
             <% if user_signed_in? %>
               <% if current_user.profile.id%>
-                <li><%= link_to current_user.username.capitalize, profile_path(current_user.profile.id) %> </li>
-                <li class="divider-vertical"></li>
-                <li><%= link_to "Edit Profile", edit_profile_path(current_user.profile.id) %> </li>
+                <li class="dropdown">
+                <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
+                  <%= current_user.username.capitalize %> <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <li><%= link_to "View Profile", profile_path(current_user.profile.id) %> </li>
+                  <li><%= link_to "Edit Profile", edit_profile_path(current_user.profile.id) %> </li>
+                  <li><%= link_to "Edit Credentials", edit_user_registration_path %> </li>
+                </ul>
+                </li>
               <%else%>
                 <li><%= link_to "Create Profile", new_profile_path %> </li>
               <%end%>
