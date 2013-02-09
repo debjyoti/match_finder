@@ -1,70 +1,50 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h2><%= @profile.name %></h2>
+</div>
 
-<p>
-  <b>Name:</b>
-  <%= @profile.name %>
+<p class="lead">
+<%= @profile.age %> / <%= @profile.gender %> / <%= @profile.city %> / <%= @profile.country %>
 </p>
 
-<p>
-  <b>Age:</b>
-  <%= @profile.age %>
-</p>
 
-<p>
-  <b>Gender:</b>
-  <%= @profile.gender %>
-</p>
-
-<p>
-  <b>Country:</b>
-  <%= @profile.country %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @profile.city %>
-</p>
-
-<p>
-<b>Links:</b>
-<%@profile.web_links.each do |link|%>
-  <p>
-  Type: <%=link.link_type%>
-  - Link-Url: <%=link.link_url%>
-  </p>
-<%end%>
-</p>
 
 <%@profile.answers.each do |answer|%>
-  <hr>
-  <p>
-  Qs-Id:<%=answer.question_id%>
-  </p>
-  <p>
-  Qs:<%=answer.question%>
-  </p>
-  <p>
-  Ans Id:<%=answer.option_id%>
-  </p>
-  <p>
-  Ans:<%=answer.chosen_option%>
-  </p>
-  <p>
-  Exp:<%=answer.explanation%>
-  </p>
+  <% if (answer.option_id or answer.explanation.length>0) %> 
+    <div class="well">
+      <p>
+      <%=answer.question%> <b><%=answer.chosen_option%></b>
+      </p>
+      <% if answer.explanation.length > 0 %>
+        <p>
+        -- <%=sanitize answer.explanation%>
+        </p>
+      <%end%>
+    </div>
+    <hr>
+  <%end%>
 <%end%>
 
-<br/>
-<h5>User Submitted:</h5>
 <%@profile.user_questions.each do |answer|%>
+  <div class="well">
+  <p>
+  <%=sanitize answer.question%>
+  </p>
+  <p>
+  -- <%=sanitize answer.explanation%>
+  </p>
+</div>
   <hr>
-  <p>
-  Qs:<%=answer.question%>
-  </p>
-  <p>
-  Exp:<%=answer.explanation%>
-  </p>
 <%end%>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
+  <%@profile.web_links.each do |link|%>
+    <%if link.link_url.length>0 %>
+    <dl class="dl-horizontal">
+      <dt><%=link.link_type%></dt>
+      <dd> <%= link_to link.link_url, link.link_url%></a></dd>
+    </dl>
+    <%end%>
+  <%end%>
+
+  <div class="btn">
 <%= link_to 'Back', profiles_path %>
+</div>
