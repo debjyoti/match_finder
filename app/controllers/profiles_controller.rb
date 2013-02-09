@@ -24,7 +24,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   # GET /profiles/new.json
   def new
-    @profile = Profile.new
+    @profile = current_user.build_profile
     @profile.web_links.new()
     @questions = Question.all(include: :options)
     @questions.each do |qs|
@@ -40,7 +40,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profile
     @questions = Question.all(include: :options)
     @index=0
   end
@@ -50,7 +50,7 @@ class ProfilesController < ApplicationController
   def create
 
     set_option_text_in_param
-    @profile = Profile.new(params[:profile])
+    @profile = current_user.build_profile(params[:profile])
 
     respond_to do |format|
       if @profile.save
@@ -68,7 +68,7 @@ class ProfilesController < ApplicationController
   def update
     
     set_option_text_in_param
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profile
 
     respond_to do |format|
       if @profile.update_attributes(params[:profile])
@@ -84,7 +84,7 @@ class ProfilesController < ApplicationController
   # DELETE /profiles/1
   # DELETE /profiles/1.json
   def destroy
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profile
     @profile.destroy
 
     respond_to do |format|
@@ -101,6 +101,7 @@ class ProfilesController < ApplicationController
     #value field. Create works, but edit form does not show selected buttons.
     #There must be better way. Maybe I should use javascript to add the text
     #as a hidden field and do away with this stupid method.
+    #Even better, use VIRTUAL ATTRIBUTES
     
     params['profile']['answers_attributes'].keys.each do |indx|
       option_id = params['profile']['answers_attributes'][indx]['option_id']

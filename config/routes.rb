@@ -1,9 +1,8 @@
 MatchFinder::Application.routes.draw do
 
-  devise_for :users
-
   root :to => 'static_stuff#about'
 
+  devise_for :users
   resources :profiles
 
   resources :questions
