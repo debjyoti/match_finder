@@ -32,7 +32,7 @@
             <li><%= link_to "Browse", profiles_path %> </li>
             <li class="divider-vertical"></li>
             <% if user_signed_in? %>
-              <% if current_user.profile.id%>
+              <% if current_user.profile.try(:id)%>
                 <li class="dropdown">
                 <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
                   <%= current_user.username.capitalize %> <b class="caret"></b></a>
