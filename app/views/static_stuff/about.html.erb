@@ -1,3 +1,4 @@
+<div class="hero-unit">
 <p>
 <h5>
   This is a matrimonial website for folks who prefer to choose partners based on personality. Profiles must be created with considerable care, and thought. Good luck.
@@ -12,10 +13,11 @@
 <div class="btn btn-warning btn-large">
   <%=link_to "Get Started", new_user_registration_path %>
 </div>
+</div>
 
 <% unless user_signed_in? %>
   <% content_for :sign_in_panel do %>
-    <div class="well well-large pull-right">
+    <div class="container-fluid pull-right">
       <div class='lead'> Sign In </div>
       <%= form_for("user", :url => user_session_path) do |f| %>
         <div><%= f.label :login %>
