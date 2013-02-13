@@ -1,6 +1,9 @@
 class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
+  
+  before_filter :check_if_admin
+
   def index
     @questions = Question.all
 
@@ -79,6 +82,15 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to questions_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+  def check_if_admin
+    if user_signed_in? and current_user.role.name == 'admin'
+      return true
+    else
+      redirect_to profiles_path, alert: 'You do not have permission to the question bank.'
     end
   end
 end
