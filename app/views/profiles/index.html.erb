@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Age</th>
       <th>Gender</th>
       <th>City</th>
       <th>Country</th>
@@ -16,7 +15,6 @@
   <% @profiles.each do |profile| %>
     <tr>
       <td><%= link_to profile.name, profile %></td>
-      <td><%= profile.age %></td>
       <td><%= profile.gender %></td>
       <td><%= profile.city %></td>
       <td><%= profile.country %></td>

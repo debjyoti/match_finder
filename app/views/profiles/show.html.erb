@@ -3,7 +3,7 @@
 </div>
 
 <p class="lead">
-<%= @profile.age %> / <%= @profile.gender %> / <%= @profile.city %> / <%= @profile.country %>
+<%= @age %> / <%= @profile.gender.capitalize %> / <%= @profile.city%> / <%= @profile.country%>
 </p>
 
 
@@ -46,5 +46,5 @@
 <%end%>
 
 <div class="btn">
-  <%= link_to 'Back', profiles_path %>
+  <%= link_to 'Back', :back %>
 </div>

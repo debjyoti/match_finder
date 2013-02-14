@@ -1,6 +1,6 @@
 class Profile < ActiveRecord::Base
-  attr_accessible :age, :city, :country, :gender, :name, :answers_attributes, :web_links_attributes, :user_questions_attributes
-  validates :name, :age, :city, :country, :gender, presence: true
+  attr_accessible :born, :city, :country, :gender, :name, :answers_attributes, :web_links_attributes, :user_questions_attributes
+  validates :name, :born, :city, :country, :gender, presence: true
 
   belongs_to :user
 

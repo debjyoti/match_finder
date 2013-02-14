@@ -14,31 +14,31 @@
   <div class="control-group">
     <%= f.label :name, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :name %>
+      <%= f.text_field :name, class: 'input-xlarge' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :age, class: 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :age %>
+    <%= f.label :Born, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.date_select(:born, {discard_day: true, start_year: 1910, prompt: {year: 'Year', month: 'Month'}}, { class: 'input-small' }) %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :gender, class: 'control-label' %>
     <div class="controls">
-      <%= f.select :gender, ['male','female'] %>
+      <%= f.select :gender, ['male','female'],{}, {class: 'input-small'} %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :country, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :country %>
+      <%= f.text_field :country, class: 'input-medium' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :city, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :city %>
+      <%= f.text_field :city, class: 'input-medium' %>
     </div>
   </div>
 
