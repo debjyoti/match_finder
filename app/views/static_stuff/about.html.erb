@@ -1,19 +1,23 @@
 <div class="hero-unit">
 <p>
+<h3>The Get-to-know-you site</h3>
+<img src="images/brain.jpg"/>
 <h5>
-  This is a matrimonial website for folks who prefer to choose partners based on personality. Profiles must be created with considerable care, and thought. Good luck.
+  Pictures are great for capturing memories and sharing ideas, but they are not great for knowing a person. On social and dating sites, we often judge people based on their picture, and someone-else's creativity which they endorse. Their humorous, witty or thought provoking comments lose importance among the flashy snaps and clips. We help you present the 'real you' to the world, without pictures. Browse a profile and you will know. 
 </h5>
-</p>
-
-<p>
-<img src="images/HateMyself.gif"/>
 </p>
 
 <br />
 <div class="btn btn-warning btn-large">
-  <%=link_to "Get Started", new_user_registration_path %>
+  <%=link_to "Get Started", profiles_path%>
 </div>
+
 </div>
+
+<p>
+Statutory Warning: Aliens might use this site to mate with humans. Here's how:
+<img src="images/Cartoon.jpg"/>
+</p>
 
 <% unless user_signed_in? %>
   <% content_for :sign_in_panel do %>
