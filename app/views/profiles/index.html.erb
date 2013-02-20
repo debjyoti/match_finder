@@ -7,7 +7,10 @@
   <% pic= profile.gender=='male' ? 'male.jpg' : 'female.jpg' %>
   <%= link_to image_tag(pic, class: "media-object") , profile, class: 'pull-left' %>
   <div class="media-body">
-    <h4 class="media-heading"> <%= profile.name %> / <%= ((DateTime.now.to_date - profile.born).to_i / 365)-1 %> / <%=profile.city%> </h4>
+    <h4 class="media-heading"> <%= profile.name %> / <%= ((DateTime.now.to_date - profile.born).to_i / 365) %> / <%=profile.city%> </h4>
+  </div>
+  <div class="media">
+    <big><%=profile.punch_line%></big>
   </div>
 </div>
 <%end%>
