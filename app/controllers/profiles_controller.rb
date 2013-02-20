@@ -15,6 +15,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = Profile.find(params[:id])
     @age = (DateTime.now.to_date - @profile.born).to_i / 365
+    @him_or_her = @profile.gender=='male'? 'him' : 'her'
 
     respond_to do |format|
       format.html # show.html.erb
