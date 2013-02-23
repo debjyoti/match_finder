@@ -5,6 +5,7 @@ MatchFinder::Application.routes.draw do
   devise_for :users
   resources :profiles do
     post 'ping'
+    get 'older_pings'
   end
 
   resources :questions

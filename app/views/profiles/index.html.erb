@@ -20,13 +20,15 @@
   <% if @recent_pings and @recent_pings.count > 0 %>
     <div class="well">
       <h4>Recent Pings: </h4>
-      <% @recent_pings.each do |pinger| %>
-        <hr>
-        <%= pinger.email %>: <%= pinger.msg %><br \>
-        <div class="btn btn-mini">
-          <%= link_to "View Profile", profile_path(pinger.from_profile_id) %>
-        </div>
-      <%end%>
+      <%= render partial: "show_pings", locals: { pings: @recent_pings } %>
     </div>
+  <% elsif @all_ping_count and @all_ping_count > 0%>
+    <h5><i class="icon-warning-sign"></i> No Recent Pings </h5>
+  <%end%>
+
+  <% if @all_ping_count and @all_ping_count > @recent_pings.count %>
+    <div class='older_pings'>
+    </div>
+    <h5> <%= link_to "See Older Pings", profile_older_pings_path(current_user.profile), remote: true, class: 'btn' %></h5>
   <%end%>
 <%end%>

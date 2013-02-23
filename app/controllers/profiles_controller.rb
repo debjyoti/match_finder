@@ -6,6 +6,7 @@ class ProfilesController < ApplicationController
 
     if user_signed_in? and current_user.profile then
       @recent_pings = current_user.profile.pings.where("created_at >= ?", current_user.last_sign_in_at).order("created_at DESC")
+      @all_ping_count = current_user.profile.pings.count
     end
 
     respond_to do |format|
@@ -39,6 +40,13 @@ class ProfilesController < ApplicationController
     else
       redirect_to new_user_session_path, notice: 'You must sign in to ping.'
     end
+  end
+
+  def older_pings
+      @older_pings = current_user.profile.pings.where("created_at < ?", current_user.last_sign_in_at).order("created_at DESC")
+      respond_to do |format|
+        format.js 
+      end
   end
 
   # GET /profiles/new
