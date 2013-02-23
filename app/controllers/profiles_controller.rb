@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
     @profiles = Profile.order("created_at DESC")
 
     if user_signed_in? and current_user.profile then
-      @pinged_by_list = current_user.profile.pings.order("created_at DESC")
+      @recent_pings = current_user.profile.pings.where("created_at >= ?", current_user.last_sign_in_at).order("created_at DESC")
     end
 
     respond_to do |format|

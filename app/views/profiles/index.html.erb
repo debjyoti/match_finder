@@ -17,10 +17,10 @@
 
 <% content_for :right_side_panel do %>
   <br \><br \>
-  <% if @pinged_by_list and @pinged_by_list.count > 0 %>
+  <% if @recent_pings and @recent_pings.count > 0 %>
     <div class="well">
-      <h4>Who Pinged You? </h4>
-      <% @pinged_by_list.each do |pinger| %>
+      <h4>Recent Pings: </h4>
+      <% @recent_pings.each do |pinger| %>
         <hr>
         <%= pinger.email %>: <%= pinger.msg %><br \>
         <div class="btn btn-mini">
