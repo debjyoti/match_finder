@@ -5,6 +5,7 @@ class Profile < ActiveRecord::Base
   belongs_to :user
 
   has_many :web_links, dependent: :destroy
+  has_many :pings, dependent: :destroy
   accepts_nested_attributes_for :web_links, allow_destroy: :true,
     reject_if: proc { |attrs| attrs.all? { |key, val| val.blank? } }
 

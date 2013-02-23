@@ -20,7 +20,7 @@ Statutory Warning: Aliens might use this site to mate with humans. Here's how:
 </p>
 
 <% unless user_signed_in? %>
-  <% content_for :sign_in_panel do %>
+  <% content_for :right_side_panel do %>
     <div class="container-fluid pull-right">
       <div class='lead'> Sign In </div>
       <%= form_for("user", :url => user_session_path) do |f| %>

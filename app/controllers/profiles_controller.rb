@@ -2,7 +2,11 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    @profiles = Profile.order("created_at DESC")
+
+    if user_signed_in? and current_user.profile then
+      @pinged_by_list = current_user.profile.pings.order("created_at DESC")
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,13 +17,27 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    @profile = Profile.find(params[:id])
+    @profile = Profile.find(params[:id] )
     @age = ((DateTime.now.to_date - @profile.born).to_i / 365)
-    @him_or_her = @profile.gender=='male'? 'him' : 'her'
+    @him_or_her = @profile.gender=='male'? 'Him' : 'Her'
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @profile }
+    end
+  end
+
+  def ping
+    if user_signed_in? then
+      if current_user.profile then
+      @profile = Profile.find(params[:profile_id])
+      @profile.pings.create(from_profile_id: current_user.profile.id, msg: params[:msg], email: current_user.email)
+      redirect_to :back, notice: 'Pinged! Good luck.'
+      else
+        redirect_to new_profile_path, notice: 'You must have a profile before you ping.'
+      end
+    else
+      redirect_to new_user_session_path, notice: 'You must sign in to ping.'
     end
   end
 

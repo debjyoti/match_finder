@@ -3,7 +3,9 @@ MatchFinder::Application.routes.draw do
   root :to => 'static_stuff#about'
 
   devise_for :users
-  resources :profiles
+  resources :profiles do
+    post 'ping'
+  end
 
   resources :questions
 

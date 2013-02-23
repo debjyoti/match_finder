@@ -14,3 +14,19 @@
   </div>
 </div>
 <%end%>
+
+<% content_for :right_side_panel do %>
+  <br \><br \>
+  <% if @pinged_by_list and @pinged_by_list.count > 0 %>
+    <div class="well">
+      <h4>Who Pinged You? </h4>
+      <% @pinged_by_list.each do |pinger| %>
+        <hr>
+        <%= pinger.email %>: <%= pinger.msg %><br \>
+        <div class="btn btn-mini">
+          <%= link_to "View Profile", profile_path(pinger.from_profile_id) %>
+        </div>
+      <%end%>
+    </div>
+  <%end%>
+<%end%>
