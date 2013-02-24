@@ -4,4 +4,7 @@ class StaticStuffController < ApplicationController
 
   def contact_us
   end
+
+  def welcome
+  end
 end

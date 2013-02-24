@@ -15,6 +15,8 @@ MatchFinder::Application.routes.draw do
 
   get "contact_us" => "static_stuff#contact_us"
 
+  get "welcome" => "static_stuff#welcome"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

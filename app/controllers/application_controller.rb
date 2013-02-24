@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in? and current_user.profile then
       profiles_path
     else
-      new_profile_path
+      welcome_path
     end
   end
 
