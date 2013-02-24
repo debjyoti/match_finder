@@ -93,6 +93,8 @@ class ProfilesController < ApplicationController
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render json: @profile, status: :created, location: @profile }
       else
+        @questions = Question.all(include: :options)
+        @index=0
         format.html { render action: "new" }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
@@ -111,6 +113,8 @@ class ProfilesController < ApplicationController
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
+        @questions = Question.all(include: :options)
+        @index=0
         format.html { render action: "edit" }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
