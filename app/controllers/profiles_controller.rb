@@ -32,9 +32,9 @@ class ProfilesController < ApplicationController
   def ping
     if user_signed_in? then
       if current_user.profile then
-      @profile = Profile.find(params[:profile_id])
-      @profile.pings.create(from_profile_id: current_user.profile.id, msg: params[:msg], email: current_user.email)
-      redirect_to :back, notice: 'Pinged! Good luck.'
+        @profile = Profile.find(params[:profile_id])
+        @profile.pings.create(from_profile_id: current_user.profile.id, msg: params[:msg], email: current_user.email, pinger_name: current_user.profile.name, pinged_name: @profile.name)
+        redirect_to :back, notice: "#{@profile.name} has been notified about your ping."
       else
         redirect_to new_profile_path, notice: 'You must have a profile before you ping.'
       end
@@ -44,10 +44,10 @@ class ProfilesController < ApplicationController
   end
 
   def older_pings
-      @older_pings = current_user.profile.pings.where("created_at < ?", current_user.last_sign_in_at).order("created_at DESC")
-      respond_to do |format|
-        format.js 
-      end
+    @older_pings = current_user.profile.pings.where("created_at < ?", current_user.last_sign_in_at).order("created_at DESC")
+    respond_to do |format|
+      format.js 
+    end
   end
 
   def see_who_i_pinged
@@ -104,7 +104,7 @@ class ProfilesController < ApplicationController
   # PUT /profiles/1
   # PUT /profiles/1.json
   def update
-    
+
     set_option_text_in_param
     @profile = current_user.profile
 
@@ -142,7 +142,7 @@ class ProfilesController < ApplicationController
     #There must be better way. Maybe I should use javascript to add the text
     #as a hidden field and do away with this stupid method.
     #Even better, use VIRTUAL ATTRIBUTES
-    
+
     params['profile']['answers_attributes'].keys.each do |indx|
       option_id = params['profile']['answers_attributes'][indx]['option_id']
       if(option_id) then
