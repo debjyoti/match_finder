@@ -22,13 +22,23 @@
       <h4>Recent Pings: </h4>
       <%= render partial: "show_pings", locals: { pings: @recent_pings } %>
     </div>
-  <% elsif @all_ping_count and @all_ping_count > 0%>
-    <h5><i class="icon-warning-sign"></i> No Recent Pings </h5>
+  <% elsif @all_ping_count %>
+    <% if @all_ping_count > 0 %>
+      <h5><i class="icon-warning-sign"></i> No Recent Pings </h5>
+    <%else%>
+      <h5><i class="icon-warning-sign"></i> No Pings </h5>
+    <%end%>
   <%end%>
 
   <% if @all_ping_count and @all_ping_count > @recent_pings.count %>
     <div class='older_pings'>
+      <h5> <%= link_to "See Older Pings", profile_older_pings_path(current_user.profile), remote: true, class: 'btn' %></h5>
     </div>
-    <h5> <%= link_to "See Older Pings", profile_older_pings_path(current_user.profile), remote: true, class: 'btn' %></h5>
   <%end%>
+
+  <% if @who_i_pinged_count and  @who_i_pinged_count > 0 %>
+    <div class='who_i_pinged'>
+      <h5> <%= link_to "See Who I Pinged?", profile_see_who_i_pinged_path(current_user.profile), remote: true, class: 'btn' %></h5>
+    </div>
+  <% end%>
 <%end%>

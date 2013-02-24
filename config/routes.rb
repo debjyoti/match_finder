@@ -6,6 +6,7 @@ MatchFinder::Application.routes.draw do
   resources :profiles do
     post 'ping'
     get 'older_pings'
+    get 'see_who_i_pinged'
   end
 
   resources :questions
