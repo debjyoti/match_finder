@@ -1,7 +1,5 @@
 <% pings.each do |ping| %>
   <hr>
   <%= ping.pinged_name %>: <%= ping.msg %><br \>
-  <div class="btn btn-mini">
-    <%= link_to "View Profile", profile_path(ping.profile_id) %>
-  </div>
+  <%= link_to "View Profile", profile_path(ping.profile_id), class: 'btn btn-mini' %>
 <%end%>

@@ -2,7 +2,5 @@
   <hr>
   <%= ping.pinger_name %>: <%= ping.msg %><br \>
   (<%= ping.email %>)<br \>
-  <div class="btn btn-mini">
-    <%= link_to "View Profile", profile_path(ping.from_profile_id) %> 
-  </div>
+  <%= link_to "View Profile", profile_path(ping.from_profile_id), class: 'btn btn-mini' %> 
 <%end%>
