@@ -38,20 +38,21 @@ MatchFinder::Application.configure do
   #Devise authentication
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
-  require 'tlsmail'    
-  Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+  #require 'tlsmail'    
+  #Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
 
-  ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.perform_deliveries = true
-  ActionMailer::Base.raise_delivery_errors = true
-  ActionMailer::Base.smtp_settings = {
+  #ActionMailer::Base.delivery_method = :smtp
+  #ActionMailer::Base.perform_deliveries = true
+  #ActionMailer::Base.raise_delivery_errors = true
+  #ActionMailer::Base.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,  
     :address            => 'smtp.gmail.com',
     :port               => 587,
     #:tls                  => true,
     :domain             => 'google.com', #you can also use google.com
     :authentication     => :plain,
-    :user_name          => 'debjyoti.majumder.02@gmail.com',
-    :password           => 'Atosorigin$1'
+    :user_name          => ENV["EMAIL_ID"],
+    :password           => ENV["EMAIL_PWD"]
   }
-  end
+end
