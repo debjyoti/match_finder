@@ -66,7 +66,7 @@ MatchFinder::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
   #Devise authentication
-  config.action_mailer.default_url_options = { :host => 'http://protected-harbor-8849.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'protected-harbor-8849.herokuapp.com' }
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
