@@ -24,11 +24,11 @@ test:
   username: dj
   password:
 
-#production:
-#  adapter: postgresql
-#  encoding: unicode
-#  database: match_production
-#  pool: 5
-#  timeout: 5000
-#  username: dj
-#  password:
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: match_production
+  pool: 5
+  timeout: 5000
+  username: dj
+  password:
