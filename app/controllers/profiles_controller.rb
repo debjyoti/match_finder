@@ -20,6 +20,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     @profile = Profile.find(params[:id] )
+    @answers = @profile.answers.order(:id)
     @age = ((DateTime.now.to_date - @profile.born).to_i / 365)
     @him_or_her = @profile.gender=='male'? 'Him' : 'Her'
 
