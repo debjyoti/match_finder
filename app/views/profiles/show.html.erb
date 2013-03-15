@@ -42,8 +42,10 @@
   </div>
 <%end%>
 
-<%= form_tag(profile_ping_path(@profile.id)) do%>
-  <%= text_area_tag(:msg, "", class: 'input-xxlarge', rows: "4", placeholder: 'Your message (Email id will be automatically sent).') %>
-  <%= submit_tag('Ping '+@him_or_her, class: 'btn btn-warning btn-large')%>
-<% end %>
+<% if @profile.user != current_user %>
+  <%= form_tag(profile_ping_path(@profile.id)) do%>
+    <%= text_area_tag(:msg, "", class: 'input-xxlarge', rows: "4", placeholder: 'Your message (Your email id will be automatically sent).') %>
+    <%= submit_tag('Ping '+@him_or_her, class: 'btn btn-warning btn-large')%>
+  <% end %>
+<%end%>
 

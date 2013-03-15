@@ -35,7 +35,7 @@ class ProfilesController < ApplicationController
       if current_user.profile then
         @profile = Profile.find(params[:profile_id])
         @profile.pings.create(from_profile_id: current_user.profile.id, msg: params[:msg], email: current_user.email, pinger_name: current_user.profile.name, pinged_name: @profile.name)
-        PingMailer.ping_email(@profile.user.email, current_user.profile.name, params[:msg], current_user.email).deliver
+        PingMailer.ping_email(@profile.user.email, current_user.profile.name, params[:msg], current_user.email, url_for(@profile, host: "http://protected-harbor-8849.herokuapp.com")).deliver
         redirect_to :back, notice: "#{@profile.name} has been notified about your ping."
       else
         redirect_to new_profile_path, notice: 'You must have a profile before you ping.'
