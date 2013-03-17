@@ -1,5 +1,9 @@
 <div class="page-header">
-  <h2><%= @profile.name %></h2>
+  <% if @profile.user != current_user %>
+    <h2><%= @profile.name %></h2>
+  <%else%>
+    <h2><%= @profile.name %> <%= link_to "Edit Profile", edit_profile_path(current_user.profile.id), class: 'btn btn-warning pull-right' %> </h2>
+  <%end%>
 </div>
 
 <p class="lead">
