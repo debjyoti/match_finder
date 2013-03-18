@@ -1,0 +1,80 @@
+<%= form_for @profile do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+        <% @profile.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, class: 'input-xlarge' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :punch_line, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :punch_line, class: 'input-xxlarge' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :Born, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.date_select(:born, {discard_day: true, start_year: 1910, end_year: Time.now.year-15, prompt: {year: 'Year', month: 'Month'}}, { class: 'input-small' }) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :gender, class: 'control-label' %>
+    <div class="controls">
+      <%= f.select :gender, ['male','female'],{}, {class: 'input-small'} %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :country, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :country, class: 'input-medium' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :city, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :city, class: 'input-medium' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.fields_for :web_links do |links_form| %>
+      <%= render partial: 'web_links/form', locals: {f: links_form} %>
+    <%end%>
+    <%= link_to_add_fields "Add More Links", f, :web_links %>
+  </div>
+
+  <hr>
+  <h4>Questionnaire (Everything is optional)</h4>
+
+  <div class="control-group">
+    <%= f.fields_for :answers do |ans_form| %>
+      <%= render partial: 'answers/form', locals: {f: ans_form, qs: @answers[@index].question} %>
+      <% @index += 1 %>
+    <%end%>
+  </div>
+
+  <div class="control-group">
+    <%= f.fields_for :user_questions do |links_form| %>
+      <%= render partial: 'user_questions/form', locals: {f: links_form} %>
+    <%end%>
+    <%= link_to_add_fields "Add Your Own Question", f, :user_questions %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -66,7 +66,7 @@ class ProfilesController < ApplicationController
     @profile.web_links.new()
     @questions = Question.all(include: :options)
     @questions.each do |qs|
-      @profile.answers.new(question_id: qs.id, question: qs.question)
+      @profile.answers.new(question_id: qs.id, question_text: qs.question)
     end
     @index=0
 
@@ -79,7 +79,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1/edit
   def edit
     @profile = current_user.profile
-    @questions = Question.all(include: :options)
+    @answers = @profile.answers
     @index=0
   end
 

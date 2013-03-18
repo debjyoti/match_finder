@@ -21,7 +21,7 @@
 
 <%@answers.each do |answer|%>
   <% if (answer.option_id or answer.explanation.length>0) %> 
-    <h4><i class="icon-question-sign"> </i><%=answer.question%></h4>
+    <h4><i class="icon-question-sign"> </i><%=answer.question_text%></h4>
     <div class="row">
       <div class="span7 offset1">
         <% if answer.chosen_option %>
