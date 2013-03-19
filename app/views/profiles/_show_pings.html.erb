@@ -1,6 +1,6 @@
 <% pings.each do |ping| %>
   <hr>
   <%= ping.pinger_name %>: <%= ping.msg %><br \>
-  (<%= ping.email %>)<br \>
+  (<%= ping.email.sub('@',' AT ') %>)<br \>
   <%= link_to "View Profile", profile_path(ping.from_profile_id), class: 'btn btn-mini' %> 
 <%end%>
